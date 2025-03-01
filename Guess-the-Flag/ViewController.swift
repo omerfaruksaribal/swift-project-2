@@ -59,7 +59,11 @@ class ViewController: UIViewController {
         button2.setImage(UIImage(named: countries[1]), for: .normal)
         button3.setImage(UIImage(named: countries[2]), for: .normal)
         
-        title = "\(countries[correctAnswer].uppercased())   Score: \(score)"
+        title = "\(countries[correctAnswer].uppercased())"
+        
+        let scoreButton = UIBarButtonItem(image: UIImage(systemName: "trophy"), style: .plain, target: self, action: #selector(scoreTapped))
+        navigationItem.rightBarButtonItem = scoreButton
+
     }
     
     
@@ -88,6 +92,12 @@ class ViewController: UIViewController {
             
             present(ac, animated: true)
         }
+    }
+    
+    @objc func scoreTapped() {
+        let ac = UIAlertController(title: "Current Score", message: "Your score is: \(score)", preferredStyle: .alert)
+        ac.addAction(UIAlertAction(title: "OK", style: .default))
+        present(ac, animated: true)
     }
 }
 
